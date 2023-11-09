@@ -485,8 +485,10 @@ function getFloatOnString(str) {
  * '1.234', 2           => 1
  * '10', 8              => 1
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(...args) {
+  const str = args[0];
+  const base = args[1];
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -500,8 +502,8 @@ function getIntegerOnString(/* str, base */) {
  * 3.5      => false
  * 2 ** 53  => false
  */
-function isSafeInteger(/* number */) {
-  throw new Error('Not implemented');
+function isSafeInteger(...args) {
+  return Number.isSafeInteger(args[0]);
 }
 
 /**
@@ -514,8 +516,8 @@ function isSafeInteger(/* number */) {
  * 5.9  => 5
  * -5.1 => -6
  */
-function roundToSmallestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToSmallestInteger(...args) {
+  return Math.floor(args[0]);
 }
 
 /**
@@ -528,8 +530,8 @@ function roundToSmallestInteger(/* number */) {
  * 5.1  => 6
  * -5.9 => -5
  */
-function roundToLargestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToLargestInteger(...args) {
+  return Math.ceil(args[0]);
 }
 
 /**
@@ -543,8 +545,8 @@ function roundToLargestInteger(/* number */) {
  * 5.4  => 5
  * -5.5 => -5
  */
-function roundToNearestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToNearestInteger(...args) {
+  return Math.round(args[0]);
 }
 
 /**
@@ -558,8 +560,8 @@ function roundToNearestInteger(/* number */) {
  * 5.4  => 5
  * -5.5 => -5
  */
-function getIntegerPartNumber(/* number */) {
-  throw new Error('Not implemented');
+function getIntegerPartNumber(...args) {
+  return Math.trunc(args[0]);
 }
 
 /**
@@ -574,8 +576,28 @@ function getIntegerPartNumber(/* number */) {
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
  */
-function getSumOfNumbers(/* x1, x2, x3 */) {
-  throw new Error('Not implemented');
+function getSumOfNumbers(...args) {
+  let sum;
+  let x1 = args[0];
+  let x2 = args[1];
+  let x3 = args[2];
+  if (Number.isInteger(x1) && Number.isInteger(x2) && Number.isInteger(x3)) {
+    sum = args[0] + args[1] + args[2];
+  } else {
+    let n = 1;
+    while (
+      !Number.isInteger(x1) ||
+      !Number.isInteger(x2) ||
+      !Number.isInteger(x3)
+    ) {
+      x1 *= 10;
+      x2 *= 10;
+      x3 *= 10;
+      n += 1;
+    }
+    sum = (args[0] + args[1] + args[2]).toFixed(n);
+  }
+  return sum;
 }
 
 /**
