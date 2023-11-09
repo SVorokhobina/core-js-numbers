@@ -612,8 +612,8 @@ function getSumOfNumbers(...args) {
  * -5, -6 => -5
  * 0, 5   => 5
  */
-function getMaxNumber(/* firstNumber, secondNumber */) {
-  throw new Error('Not implemented');
+function getMaxNumber(...args) {
+  return Math.max(args[0], args[1]);
 }
 
 /**
@@ -628,8 +628,11 @@ function getMaxNumber(/* firstNumber, secondNumber */) {
  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
  * -1, 1 => -1 | 0 | 1
  */
-function getRandomInteger(/* min, max */) {
-  throw new Error('Not implemented');
+function getRandomInteger(...args) {
+  const min = args[0];
+  const max = args[1];
+  const randomNum = Math.random() * (max + 1 - min) + min;
+  return Math.floor(randomNum);
 }
 
 /**
@@ -642,8 +645,8 @@ function getRandomInteger(/* min, max */) {
  * @example:
  * 3, 4 => 5
  */
-function getHypotenuse(/* a, b */) {
-  throw new Error('Not implemented');
+function getHypotenuse(...args) {
+  return Math.hypot(args[0], args[1]);
 }
 
 /**
@@ -659,8 +662,16 @@ function getHypotenuse(/* a, b */) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(...args) {
+  let n;
+  if (args[0] === 0) {
+    n = 0;
+  } else if (args[0] > 0) {
+    n = Math.ceil(args[0] / 2);
+  } else if (args[0] < 0) {
+    n = Math.abs(Math.floor(args[0] / 2));
+  }
+  return n;
 }
 
 module.exports = {
