@@ -351,8 +351,10 @@ function getSine(...args) {
  * 255, 16 => 'ff'
  * 2, 2    => '10'
  */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(...args) {
+  const num = args[0];
+  const base = args[1];
+  return num.toString(base);
 }
 
 /**
@@ -365,8 +367,10 @@ function numberToStringInBase(/* number, base */) {
  * @example:
  * 12345, 2    => '1.23e+4'
  */
-function toExponential(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toExponential(...args) {
+  const num = args[0];
+  const fractionDigits = args[1];
+  return num.toExponential(fractionDigits);
 }
 
 /**
@@ -380,8 +384,10 @@ function toExponential(/* number, fractionDigits */) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(...args) {
+  const num = args[0];
+  const fractionDigits = args[1];
+  return num.toFixed(fractionDigits);
 }
 
 /**
@@ -396,8 +402,10 @@ function toFixed(/* number, fractionDigits */) {
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
  */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
+function toPrecision(...args) {
+  const num = args[0];
+  const precision = args[1];
+  return num.toPrecision(precision);
 }
 
 /**
@@ -410,8 +418,8 @@ function toPrecision(/* number, precision */) {
  * new Number(5) => 5
  * Number(-5)    => -5
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+function getNumberValue(...args) {
+  return args[0].valueOf();
 }
 
 /**
@@ -429,8 +437,8 @@ function getNumberValue(/* number */) {
  * 5        => true
  * '5'      => false
  */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
+function isNumber(...args) {
+  return Number.isFinite(args[0]) && !Number.isNaN(args[0]);
 }
 
 /**
@@ -444,8 +452,9 @@ function isNumber(/* number */) {
  * 5.1  => false
  * '5'  => false
  */
-function isInteger(/* number */) {
-  throw new Error('Not implemented');
+function isInteger(...args) {
+  const number = args[0];
+  return Number.isInteger(number);
 }
 
 /**
@@ -458,8 +467,8 @@ function isInteger(/* number */) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
 /**
